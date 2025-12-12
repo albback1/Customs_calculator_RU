@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <script src="script.js"></script>
+    
+    <title>Калькулятор растаможки автомобиля</title>
+   
+</head>
+<body>
+    <div class="theme-switcher">
+        <button id="themeToggle">🌓 Сменить тему</button>
+    </div>
+    <div class="wrapper">
+
+        <div class="calculator"> 
+            <h2>Калькулятор растаможки автомобиля</h2>
+           
+            <div class="form-group">
+            <label for="carPrice">Стоимость автомобиля:</label>
+            <input type="text" id="carPrice" pattern="[0-9\s]+" inputmode="numeric" placeholder="Введите стоимость">
+            </div>
+
+            <div class="form-group">
+            <label for="currency">Валюта:</label>
+            <select id="currency">
+                <option value="JPY">Японская йена (¥)</option>
+                <option value="KRW">Южнокорейская вона (₩)</option>
+                <option value="CNY">Китайский юань (¥)</option>
+                <option value="USD">Доллар ($)</option>
+                <option value="EUR">Евро (€)</option>
+            </select>
+            </div>
+
+            <div class="form-group">
+            <label>Кто ввозит:</label>
+            <select id="clientType">
+                <option value="0">Физическое лицо</option>
+                <option value="1">Юридическое лицо или ИП</option>
+            </select>
+            </div>
+
+            <div class="form-group">
+            <label for="engineType">Тип двигателя:</label>
+            <div class="engine"> 
+                <select id="engineType">
+                    <option value="0">Бензин или Дизель</option>
+                    <option value="1">Электро</option>
+                </select>
+                <span class="hybrid-info">
+                    Гибрид
+                    <span class="tooltip">Для последовательных гибридов выбирайте "Электро". Для параллельных гибридов выбирайте - "Бензин или Дизель"</span>
+                </span>
+            </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="carAge">Возраст автомобиля (лет):</label>
+                <select id="carAge">
+                    <option value="1">Менее 3 лет</option>
+                    <option value="4">От 3 до 5 лет</option>
+                    <option value="6">Более 5 лет</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="engineCapacity">Объем двигателя (см³):</label>
+                <input type="text" id="engineCapacity" class="engine-capacity-field" pattern="[0-9\s]+" inputmode="numeric" placeholder="Введите объем">
+
+                <label for="horsePower">Мощность (л.с.):</label>
+                <input type="text" id="horsePower" class="horse-power-field" pattern="[0-9\s]+" inputmode="numeric" placeholder="Введите мощность">
+            </div>
+
+            <button onclick="calculate()">Рассчитать</button>
+            
+            <div class="date" id="date"></div>
+            <div class="rates" id="rates"></div>
+            <div class="result" id="result"></div>
+            <div class="link-cbr"><a href="https://www.cbr-xml-daily.ru/">Курсы валют, API</a></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2025 Калькулятор растаможки автомобиля
+            </div>
+            <div class="footer-credits">
+                <span>Разработчик</span>
+                <a href="https://github.com/albback1" target="_blank" rel="noopener noreferrer">albback1</a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="terms.html">Условия использования</a>
+                <a href="https://www.cbr-xml-daily.ru/" target="_blank" rel="noopener noreferrer">
+                    Курсы ЦБ РФ
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,6 @@
+**/build/
+/build/
+.env
+.venv/
+venv/
+./vscode

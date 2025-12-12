@@ -1,0 +1,479 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+body, .calculator, #result {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.wrapper {
+    display: flex;
+    gap: 10px; /* Отступы между блоками */
+    padding: 10px; /* Отступы внутри контейнера */
+}
+
+.calculator {
+    /*max-width: 400px;*/
+    margin: 0 auto;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.calculator label {
+    display: block;
+
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+}
+
+.calculator input {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculator select {
+    
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+    background-color: #f9f9f9;
+
+}
+
+.form-group {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto; /* Центрируем группу полей */
+}
+
+.calculator input:focus, .calculator select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+
+.calculator button {
+    margin-bottom: 30px;
+    
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.calculator button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.calculator button:active {
+    transform: translateY(0);
+}
+
+input[type="number"] {
+
+  -moz-appearance: textfield; /* Для Firefox */
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Скрыть стрелочки */
+  margin: 0; /* Убрать отступы */
+}
+
+.engine {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.engine label {
+    margin-right: 10px;
+}
+
+.hybrid-info {
+    position: relative;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+    color: #5d6268; /* Цвет текста */
+    text-decoration: underline dotted;
+}
+
+.hybrid-info:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Позиция подсказки */
+    left: 50%;
+    margin-left: -100px; /* Центрирование подсказки */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+#rates {
+    display: flex;
+    gap: 20px;  /* Расстояние между элементами */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+#rates p {
+    margin: 0;  /* Убираем стандартные отступы у параграфов */
+    padding: 0;
+    margin-left: 10;
+}
+
+#rates span {
+    font-size: 1em; 
+    font-weight: 300;  
+    white-space: nowrap; 
+}
+
+/* Стили для блока с курсами */
+.exchange-rates {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+}
+
+.rate-header {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.rates-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.rate-currency {
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    padding: 3px 8px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+}
+
+.rate-currency:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background-color: #ddd;
+}
+
+
+.receipt-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+
+#euro-rates {
+    color:#838383;
+}
+
+#result {
+    font-family: 'Courier New', monospace;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#result p {
+    margin: 5px 0;
+    padding: 3px 0;
+    border-bottom: 1px dotted #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+#result p:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #ddd;
+}
+
+#result p::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+
+}
+
+#result .label {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#result .label::after {
+    letter-spacing: 2px;
+    color: #ccc;
+    position: absolute;
+    left: 100%;
+    margin-left: 10px;
+    pointer-events: none;
+}
+
+.receipt-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.total-line {
+    margin-top: 15px !important;
+    border-top: 2px solid #000 !important;
+    padding-top: 10px !important;
+}
+
+.total-line .value {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#result span {
+    white-space: nowrap; /* Запрет переноса текста */
+    display: inline-block;
+    text-align: left;
+}
+
+#result span:first-child {
+    text-align: left;
+    width: 60%;
+}
+
+#result span:last-child {
+    text-align: right;
+    width: 40%;
+}
+
+
+.link-cbr {
+    text-align: center; /* Выравнивание по центру */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.link-cbr a {
+    color: #838383; /* Серый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 0.9em; /* Немного уменьшаем размер */
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.link-cbr a:hover {
+    color: #838383; /* Цвет при наведении */
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.link-cbr {
+    color: #838383;
+    font-size: 0.9em;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.site-footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+    padding: 25px 0;
+    margin-top: 40px;
+    font-family: 'Arial', sans-serif;
+    color: #666;
+}
+
+.footer-content {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-copyright {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.footer-credits {
+    font-size: 0.85em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.footer-credits a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-credits a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #5d6268;
+    text-decoration: none;
+    font-size: 0.85em;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #007bff;
+}
+
+/* Общие стили для темы */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --card-bg: #f8f8f8;
+    --link-color: #007bff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --border-color: #444444;
+    --card-bg: #2d2d2d;
+    --link-color: #4dabf7;
+    
+}
+
+/* Применяем переменные */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.calculator, #result, .site-footer {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+a, .footer-credits a {
+    color: var(--link-color);
+}
+
+label {
+    color: var(--text-color);
+}
+
+.calculator input,
+.calculator select {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+}
+
+.calculator input:focus,
+.calculator select:focus {
+    box-shadow: 0 0 0 3px var(--input-focus);
+}
+
+
+/* Стили для переключателя */
+.theme-switcher {
+    text-align: right;
+    padding: 10px 20px;
+}
+
+#themeToggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 16px;
+}
